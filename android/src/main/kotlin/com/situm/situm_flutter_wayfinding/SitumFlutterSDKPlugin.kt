@@ -54,6 +54,7 @@ class SitumFlutterSDKPlugin : FlutterPlugin, ActivityAware, MethodChannel.Method
             "setConfiguration" -> setConfiguration(arguments, result)
             "requestLocationUpdates" -> requestLocationUpdates(arguments, result)
             "removeUpdates" -> removeUpdates(result)
+            "getDeviceID" -> getID(result)
             "prefetchPositioningInfo" -> prefetchPositioningInfo(arguments, result)
             "geofenceCallbacksRequested" -> geofenceCallbacksRequested(result)
             "fetchPoisFromBuilding" -> fetchPoisFromBuilding(arguments, result)
@@ -69,6 +70,10 @@ class SitumFlutterSDKPlugin : FlutterPlugin, ActivityAware, MethodChannel.Method
             SitumSdk.configuration().isUseRemoteConfig = arguments["useRemoteConfig"] as Boolean
         }
         result.success("DONE")
+    }
+
+    private fun getID(result: MethodChannel.Result) {
+        result.success(SitumSdk.getDeviceID())
     }
 
     private fun fetchCategories(result: MethodChannel.Result) {

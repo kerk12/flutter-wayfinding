@@ -35,6 +35,10 @@ class SitumFlutterSDK {
     );
   }
 
+  Future<int> getDeviceID() async {
+    return await methodChannel.invokeMethod("getDeviceID");
+  }
+
   Future<void> requestLocationUpdates(
       LocationListener listener, Map<String, dynamic> locationRequest) async {
     if (!identical(locationListener, listener)) {
