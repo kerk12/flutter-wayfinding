@@ -115,7 +115,19 @@ class SitumFlutterSDKPlugin : FlutterPlugin, ActivityAware, MethodChannel.Method
         locationListener?.let {
             SitumSdk.locationManager().removeUpdates(it)
         }
-        val locationRequest = LocationRequest.Builder().build()
+
+        // PALAEMON Specific parts only.
+        // START
+        val locationBuilder = LocationRequest.Builder()
+        locationBuilder.useWifi(true)
+        locationBuilder.useBle(true)
+        locationBuilder.useBarometer(true)
+        locationBuilder.useGyro(true)
+        locationBuilder.useGps(false)
+        locationBuilder.useDeadReckoning(true)
+        locationBuilder.useCompass(false)
+        // END
+        val locationRequest = locationBuilder.build()
         // TODO: fromArguments(arguments)
         locationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
