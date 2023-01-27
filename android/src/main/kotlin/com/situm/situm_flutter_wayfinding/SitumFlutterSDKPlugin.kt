@@ -119,7 +119,7 @@ class SitumFlutterSDKPlugin : FlutterPlugin, ActivityAware, MethodChannel.Method
         // PALAEMON Specific parts only.
         // START
         val locationBuilder = LocationRequest.Builder()
-        locationBuilder.useWifi(true)
+        locationBuilder.useWifi(false)
         locationBuilder.useBle(true)
         locationBuilder.useBarometer(true)
         locationBuilder.useGyro(true)
